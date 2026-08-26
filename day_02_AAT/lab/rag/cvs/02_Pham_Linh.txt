@@ -1,0 +1,45 @@
+PHAM LINH
+Backend Developer | Ho Chi Minh City, Vietnam
+Email: linh.pham@email.com | Phone: +84 9XX XXX XXX | LinkedIn: linkedin.com/in/linh.pham
+
+PROFESSIONAL SUMMARY
+Backend Developer with 3 years of experience building web applications using Java and Python. Strong foundation in relational database design and REST API development. Looking to expand skills in cloud technologies and modern DevOps practices.
+
+TECHNICAL SKILLS
+Languages: Java, Python, SQL
+Databases: PostgreSQL, MySQL
+API Development: RESTful API, Basic API Design
+Frameworks: Spring Boot, Django, Flask
+Version Control: Git, GitHub
+Other: Linux, Basic Linux Administration
+
+PROFESSIONAL EXPERIENCE
+
+Backend Developer | CloudBridge Solutions | Aug 2023 - Present (2.5 years)
+- Developed RESTful APIs using Spring Boot and Python Flask
+- Designed and optimized PostgreSQL databases for multiple projects
+- Fixed bugs and maintained existing backend services
+- Collaborated with frontend team on API specifications
+- Participated in code reviews and team meetings
+
+Junior Backend Developer | WebApp Studio | Jan 2023 - Jul 2023 (7 months)
+- Built backend services using Python Django
+- Wrote SQL queries and managed MySQL databases
+- Assisted in feature development and bug fixes
+
+Internship | TechLearn Academy | Jun 2022 - Dec 2022 (6 months)
+- Learned Java and Python fundamentals
+- Built simple CRUD applications
+- Assisted with testing and documentation
+
+PROJECTS
+- "User Management System" (2025): Developed user registration and authentication module using Spring Boot and PostgreSQL
+- "Inventory API" (2024): Built REST API for inventory management using Python Flask
+- "Data Migration Project" (2023): Helped migrate legacy MySQL database to PostgreSQL
+
+EDUCATION
+Bachelor of Science in Computer Science
+University of Information Technology | 2022
+
+LANGUAGES
+Vietnamese (Native) | English (Intermediate)

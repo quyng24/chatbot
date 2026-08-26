@@ -1,0 +1,51 @@
+NGUYEN PHONG
+Backend Developer | Ha Noi, Vietnam
+Email: phong.nguyen@email.com | Phone: +84 9XX XXX XXX | LinkedIn: linkedin.com/in/phongnguyen
+
+PROFESSIONAL SUMMARY
+Experienced Backend Developer with 4 years of proven expertise in designing and developing scalable microservices and APIs. Strong track record of optimizing system performance and implementing cloud-based solutions. Passionate about clean code and best practices.
+
+TECHNICAL SKILLS
+Languages: Python, Node.js, Java
+Databases: PostgreSQL, MySQL
+API & Architecture: RESTful API Design, Microservices Architecture
+DevOps & Cloud: Docker, Kubernetes, AWS (EC2, RDS, Lambda, S3)
+Message Queues: RabbitMQ, Kafka
+Tools & Version Control: Git, GitHub, Jenkins
+Other: Redis, API Gateway, Load Balancing
+
+PROFESSIONAL EXPERIENCE
+
+Senior Backend Developer | TechVision Inc. | Jan 2024 - Present (2 years)
+- Designed and developed 5+ microservices using Node.js and Python, serving 500K+ daily active users
+- Optimized PostgreSQL queries resulting in 60% reduction in API latency
+- Implemented Docker containerization and Kubernetes orchestration for zero-downtime deployments
+- Built real-time data pipeline using Kafka for processing 100K+ events per second
+- Mentored 2 junior developers on backend best practices and code reviews
+
+Backend Developer | DataFlow Systems | Jun 2022 - Dec 2023 (1.5 years)
+- Developed RESTful APIs using Python Flask and Node.js Express
+- Managed PostgreSQL database design and optimization
+- Implemented CI/CD pipelines using Jenkins and GitHub Actions
+- Worked with AWS services (EC2, RDS, S3) for cloud infrastructure
+
+Junior Backend Developer | StartupXYZ | Jun 2021 - May 2022 (1 year)
+- Built backend services using Node.js
+- Assisted in database design and migration projects
+- Collaborated with frontend team on API integration
+
+PROJECTS & ACHIEVEMENTS
+- "E-commerce Platform Redesign" (2025): Led architecture redesign using microservices, reducing load time by 45% and improving scalability to handle 1M+ concurrent users
+- "Real-time Analytics Service" (2024): Built data processing pipeline with Kafka and Python, handling 100K+ events/second with 99.9% uptime
+- "Payment Gateway Integration" (2023): Designed secure API integration with third-party payment providers using Node.js
+
+EDUCATION
+Bachelor of Science in Information Technology
+University of Technology HCMC | 2021
+
+CERTIFICATIONS
+- AWS Certified Developer Associate (2024)
+- Docker Certified Associate (2023)
+
+LANGUAGES
+Vietnamese (Native) | English (Fluent)

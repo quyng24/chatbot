@@ -1,0 +1,39 @@
+VU MINH
+Frontend Developer | Ho Chi Minh City, Vietnam
+Email: minh.vu@email.com | Phone: +84 9XX XXX XXX | LinkedIn: linkedin.com/in/minh.vu
+
+PROFESSIONAL SUMMARY
+Frontend Developer with 2 years of experience building user interfaces and web applications. Strong skills in modern JavaScript frameworks. Eager to learn and grow in web development.
+
+TECHNICAL SKILLS
+Languages: JavaScript, HTML, CSS
+Frontend Frameworks: React, Vue.js
+Databases: Basic MySQL knowledge
+Version Control: Git, GitHub
+Tools: npm, webpack, VS Code
+Other: Bootstrap, responsive design
+
+PROFESSIONAL EXPERIENCE
+
+Frontend Developer | DigitalDesign Studio | Jun 2024 - Present (1.5 years)
+- Developed user interfaces using React and Vue.js
+- Built responsive web pages with HTML, CSS, and JavaScript
+- Fixed UI bugs and implemented design mockups
+- Collaborated with designers on frontend features
+
+Internship | WebDevelop Company | Jan 2024 - May 2024 (5 months)
+- Learned React basics
+- Built simple web components
+- Assisted with styling and layout fixes
+
+PROJECTS
+- "E-commerce Website" (2025): Built product listing and shopping cart UI using React
+- "Portfolio Website" (2024): Created personal portfolio with HTML, CSS, and JavaScript
+- "Landing Page" (2024): Designed and developed marketing landing page with Bootstrap
+
+EDUCATION
+Certificate in Web Development
+Online Coding Academy | 2024
+
+LANGUAGES
+Vietnamese (Native) | English (Basic)
