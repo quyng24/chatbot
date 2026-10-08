@@ -1,5 +1,5 @@
 import { google } from "@ai-sdk/google";
-import { convertToModelMessages, streamText, type UIMessage } from "ai";
+import { convertToModelMessages, smoothStream, streamText, type UIMessage } from "ai";
 
 export const maxDuration = 30;
 
@@ -24,6 +24,8 @@ export async function POST(req: Request) {
             - Với câu hỏi kỹ thuật, trả lời theo dạng step-by-step ngắn gọn.
             - Không viết dài dòng, không thêm thông tin ngoài câu hỏi.
             - Không được khẳng định các sự kiện chưa xác thực là đúng.
+            - Dùng Markdown hợp lệ để trình bày câu trả lời; dùng **in đậm** cho từ hoặc cụm từ quan trọng thay vì viết hoa toàn bộ để nhấn mạnh.
+            - Không dùng dấu * thô để trang trí; chỉ dùng chúng theo cú pháp Markdown.
             VÍ DỤ:
             User: AWS có rẻ không?
             Assistant: Tùy use case. Với GPU Workload, chi phí AWS thường cao hơn tự dựng server nhưng có ưu điểm về scalability.
@@ -31,7 +33,8 @@ export async function POST(req: Request) {
             User: Ai là người phát minh ra XYZ?
             Assistant: Tôi không biết hoặc không đủ thông tin để xác minh điều này.
             `,
-        messages: await convertToModelMessages(messages)
+        messages: await convertToModelMessages(messages),
+        experimental_transform: smoothStream({ chunking: "word" }),
     });
 
     return result.toUIMessageStreamResponse();
