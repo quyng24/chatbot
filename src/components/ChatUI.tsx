@@ -3,7 +3,7 @@
 import { useChat } from "@ai-sdk/react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import ReactMarkdown from "react-markdown";
-import { ArrowUp, Bot, Sparkles } from "lucide-react";
+import { AlertCircle, ArrowUp, Bot, Sparkles } from "lucide-react";
 import { AITypingIndicator } from "./loading/AITypingIndicator";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -136,12 +136,12 @@ export default function ChatUI() {
         <footer className="relative z-10 shrink-0 border-t border-border/60 bg-background/85 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl sm:px-6 sm:pt-4">
           <div className="mx-auto w-full max-w-3xl">
             {error && (
-              <div className="flex flex-col items-center justify-center gap-2 rounded-xl bg-destructive/10 p-4 text-destructive border border-destructive/20 mt-4 mx-12 shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-alert-circle size-6 opacity-80">
-                  <circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>
-                </svg>
-                <p className="text-sm font-medium text-center leading-relaxed">
-                  {/* Lấy trực tiếp câu lỗi đã được format từ backend */}
+              <div
+                role="alert"
+                className="mb-3 flex items-start gap-3 rounded-xl border border-destructive/20 bg-destructive/5 p-3 text-destructive shadow-sm sm:p-4"
+              >
+                <AlertCircle aria-hidden="true" className="mt-0.5 size-5 shrink-0" />
+                <p className="min-w-0 break-words text-sm leading-6">
                   {error.message || "Đã có lỗi xảy ra khi kết nối với AI."}
                 </p>
               </div>

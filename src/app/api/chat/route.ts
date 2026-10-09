@@ -4,6 +4,94 @@ import { convertToModelMessages, smoothStream, streamText, type UIMessage } from
 
 export const maxDuration = 30;
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+    return typeof value === "object" && value !== null;
+}
+
+function getErrorMessages(error: unknown): string[] {
+    const messages: string[] = [];
+
+    if (error instanceof Error) {
+        messages.push(error.message);
+    }
+
+    if (!isRecord(error)) {
+        if (typeof error === "string") messages.push(error);
+        return messages;
+    }
+
+    if (typeof error.message === "string") {
+        messages.push(error.message);
+    }
+
+    const responseBody = error.responseBody;
+    if (typeof responseBody === "string") {
+        messages.push(responseBody);
+        try {
+            const body = JSON.parse(responseBody) as unknown;
+            if (isRecord(body)) {
+                if (typeof body.message === "string") messages.unshift(body.message);
+                if (isRecord(body.error) && typeof body.error.message === "string") {
+                    messages.unshift(body.error.message);
+                }
+            }
+        } catch {
+            // The provider may return plain text instead of a JSON response body.
+        }
+    } else if (isRecord(responseBody)) {
+        if (typeof responseBody.message === "string") {
+            messages.unshift(responseBody.message);
+        }
+        if (
+            isRecord(responseBody.error) &&
+            typeof responseBody.error.message === "string"
+        ) {
+            messages.unshift(responseBody.error.message);
+        }
+    }
+
+    return messages;
+}
+
+function getQuotaErrorMessage(error: unknown): string | undefined {
+    const errorMessages = getErrorMessages(error);
+    const quotaMessage = errorMessages.find((message) =>
+        /quota exceeded|exceeded your current quota/i.test(message),
+    );
+
+    if (!quotaMessage) return undefined;
+
+    const retryMatch = errorMessages
+        .map((message) =>
+            message.match(
+                /Please retry in\s+((?:\d+(?:\.\d+)?\s*[hms]\s*)+)/i,
+            ),
+        )
+        .find((match) => match?.[1]);
+
+    if (!retryMatch?.[1]) {
+        return "Bạn đã dùng hết lượt AI miễn phí. Vui lòng thử lại sau.";
+    }
+
+    const retryDuration = retryMatch[1]
+        .trim()
+        .replace(/(\d+(?:\.\d+)?)\s*h/gi, "$1 giờ ")
+        .replace(/(\d+(?:\.\d+)?)\s*m/gi, "$1 phút ")
+        .replace(/(\d+(?:\.\d+)?)\s*s/gi, (_, seconds: string) =>
+            `${Math.ceil(Number(seconds))} giây`,
+        )
+        .trim();
+
+    return `Bạn đã dùng hết lượt AI miễn phí. Vui lòng thử lại sau ${retryDuration}.`;
+}
+
+function getPublicErrorMessage(error: unknown): string {
+    return (
+        getQuotaErrorMessage(error) ??
+        "Có lỗi xảy ra khi kết nối máy chủ AI. Vui lòng thử lại."
+    );
+}
+
 export async function POST(req: Request) {
     try {
         const { messages }: {messages: UIMessage[]} = await req.json();
@@ -13,23 +101,16 @@ export async function POST(req: Request) {
             messages: await convertToModelMessages(messages),
             experimental_transform: smoothStream({ chunking: "word"}),
         })
-        return result.toUIMessageStreamResponse();
-    } catch (error: any) {
-        const errorMessage = error?.message || "Unknown error";
-        if(errorMessage.includes("Quota exceeded")) {
-            const match = errorMessage.match(/Please retry in (.*?)\./);
-            if(match && match[1]) {
-                let retryTime = match[1];
-                retryTime = retryTime
-                    .replace(/(\d+)h/, '$1 giờ ')
-                    .replace(/(\d+)m/, '$1 phút ')
-                    .replace(/(\d+)\.\d+s/, '$1 giây')
-                    .replace(/(\d+)s/, '$1 giây');
-                return new Response( `Bạn đã dùng hết lượt AI miễn phí. Vui lòng thử lại sau: ${retryTime.trim()}`, { status: 429 });
-            }
-            return new Response( `Bạn đã dùng hết lượt AI miễn phí. Vui lòng thử lại sau.`, { status: 429 });
+        return result.toUIMessageStreamResponse({
+            onError: getPublicErrorMessage,
+        });
+    } catch (error: unknown) {
+        const quotaError = getQuotaErrorMessage(error);
+        if (quotaError) {
+            return new Response(quotaError, { status: 429 });
         }
+
         console.error("AI Error:", error);
-        return new Response("Có lỗi xảy ra khi kết nối máy chủ AI.", { status: 500 });
+        return new Response(getPublicErrorMessage(error), { status: 500 });
     }
 }
